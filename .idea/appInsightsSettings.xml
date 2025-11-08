@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.dsm.a252dsmg3dashboards" />
+                  <option name="mobileSdkAppId" value="1:291817610837:android:5eae533b6678d539b7bedc" />
+                  <option name="projectId" value="sisvitag2" />
+                  <option name="projectNumber" value="291817610837" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
