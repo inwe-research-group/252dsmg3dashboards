@@ -39,10 +39,10 @@ fun PieScreen(data: List<NPersonasXTipoDocumento>){
 @Composable
 fun Pie(data: List<NPersonasXTipoDocumento>){
     val datos = data
-    var slices= ArrayList<PieChartData.Slice>()
+    val slices = ArrayList<PieChartData.Slice>()
     val total = datos.sumOf { it.cantidad.toDouble() }.toFloat()
 
-    datos.mapIndexed {index,datos->
+    datos.mapIndexed{index, datos ->
         slices.add(
             PieChartData.Slice(
                 value = datos.cantidad.toFloat(),
@@ -55,7 +55,7 @@ fun Pie(data: List<NPersonasXTipoDocumento>){
             .padding(2.dp,80.dp)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    ){
         PieChart(
             modifier = Modifier
                 .padding(30.dp,80.dp)
@@ -68,9 +68,9 @@ fun Pie(data: List<NPersonasXTipoDocumento>){
             )
         )
         Spacer(modifier = Modifier.height(1.dp))
-        //Leyenda del pie
-        datos.forEach {
-            val porcentaje = (it.cantidad/total*100).toInt()
+        //Leyenda del Pie
+        datos.forEach{
+            val porcentaje= (it.cantidad/total*100).toInt()
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(vertical = 4.dp)
@@ -78,13 +78,12 @@ fun Pie(data: List<NPersonasXTipoDocumento>){
                 Box(
                     modifier = Modifier
                         .size(16.dp)
-                        .background(Utils().colorAleatorio(),shape = CircleShape)
-                ){
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("${it.descripcion}: ${it.cantidad} (${porcentaje}%)")
-                }
+                        .background(Utils().colorAleatorio(),
+                            shape = CircleShape)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("${it.descripcion}: ${it. cantidad} (${porcentaje}%)")
             }
         }
     }
-
 }
