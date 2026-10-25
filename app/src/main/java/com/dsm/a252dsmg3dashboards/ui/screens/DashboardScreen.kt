@@ -13,10 +13,11 @@ fun DashboardScreen(){
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.cargarDashboard()
+        //viewModel.cargarDashboard()
+        viewModel.cargarDashboardDesdeFunction()
     }
     val datos: List<NPersonasXTipoDocumento> = uiState.datosDashboard
-    //llamar a los screen con deseño estadistico
+    //llamar a los screen con diseño estadistico
     PieScreen(datos)
     BarrasScreen(datos)
 

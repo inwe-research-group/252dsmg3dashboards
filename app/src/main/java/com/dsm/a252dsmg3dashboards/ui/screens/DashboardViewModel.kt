@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 data class DashboardUiState(
     val datosDashboard: List<NPersonasXTipoDocumento> = listOf(),
     val flag_error_dashboard: Boolean = false,
+    val isLoading: Boolean = false
 )
 class DashboardViewModel(private val dashboardRepository: AccountRepository): ViewModel() {
     private val _uiState = MutableStateFlow(DashboardUiState())
@@ -47,6 +48,36 @@ class DashboardViewModel(private val dashboardRepository: AccountRepository): Vi
 
     }
 
+    /**
+     * Nueva función: carga desde Cloud Function (Firebase Functions)
+     */
+    fun cargarDashboardDesdeFunction() {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isLoading = true)
+
+            val result = dashboardRepository.getNPersonasXTipoDocumento()
+            result.onSuccess { estadisticasResponse ->
+                if (estadisticasResponse.success) {
+                    _uiState.value = _uiState.value.copy(
+                        datosDashboard = estadisticasResponse.data ?: emptyList(),
+                        flag_error_dashboard = false,
+                        isLoading = false
+                    )
+                } else {
+                    _uiState.value = _uiState.value.copy(
+                        flag_error_dashboard = true,
+                        isLoading = false
+                    )
+                }
+            }.onFailure {
+                _uiState.value = _uiState.value.copy(
+                    flag_error_dashboard = true,
+                    isLoading = false
+                )
+            }
+        }
+    }
+
     fun resetFlags(){
         _uiState.value=_uiState.value.copy(
             flag_error_dashboard=false
@@ -66,7 +97,4 @@ class DashboardViewModel(private val dashboardRepository: AccountRepository): Vi
         }
 
     }
-
-
-
 }

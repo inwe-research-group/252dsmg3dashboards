@@ -54,6 +54,7 @@ dependencies {
     // --- Firebase (BOM) ---
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.firebase.functions.ktx)
     //Viemodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
