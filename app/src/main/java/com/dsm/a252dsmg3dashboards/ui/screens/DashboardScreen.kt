@@ -20,5 +20,8 @@ fun DashboardScreen(){
     //llamar a los screen con diseño estadistico
     PieScreen(datos)
     BarrasScreen(datos)
+    // MPAndroidChart
+    MPPieScreen(datos)
+    MPBarrasScreen(datos)
 
 }
